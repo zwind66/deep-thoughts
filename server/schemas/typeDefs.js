@@ -1,7 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
+
+type User {
     _id: ID
     username: String
     email: String
@@ -10,7 +11,7 @@ const typeDefs = gql`
     friends: [User]
   }
 
-  type Thought {
+type Thought {
     _id: ID
     thoughtText: String
     createdAt: String
@@ -24,11 +25,6 @@ const typeDefs = gql`
     reactionBody: String
     createdAt: String
     username: String
-  }
-
-  type Auth {
-    token: ID!
-    user: User
   }
 
   type Query {
@@ -45,6 +41,11 @@ const typeDefs = gql`
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 `;
 

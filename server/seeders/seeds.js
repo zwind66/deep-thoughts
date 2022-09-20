@@ -4,8 +4,8 @@ const db = require('../config/connection');
 const { Thought, User } = require('../models');
 
 db.once('open', async () => {
-  await Thought.remove({});
-  await User.remove({});
+  await Thought.deleteMany({});
+  await User.deleteMany({});
 
   // create user data
   const userData = [];
@@ -18,7 +18,7 @@ db.once('open', async () => {
     userData.push({ username, email, password });
   }
 
-  const createdUsers = await User.collection.insert(userData);
+  const createdUsers = await User.collection.insertMany(userData);
 
   // create friends
   for (let i = 0; i < 100; i += 1) {
